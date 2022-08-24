@@ -35,26 +35,35 @@ import { Router, Request, Response } from 'express';
 
   app.get( "/filteredimage", async(req: Request, res: Response) => {
     let image_url = req.query.image_url;
-    if (image_url == undefined) {
+    if (image_url == undefined || image_url == "") {
       return res.status(400).send("Image url is required.");
     }
-    let image_path= await filterImageFromURL(image_url);
+    let image_path = await filterImageFromURL(image_url);
+    
+    //console.log(image_path, "hello boy");
 
     fs.readFile(image_path, function (err, data) {
       if (err) throw err;
       res.writeHead(200, {'Content-Type': 'image/jpeg'})
       res.end(data)
+      fs.unlink(image_path, err => {
+          if (err) throw err;
+      });;
     });
     
 
-    fs.unlink(image_path, (err) => {
-      if (err) {
-        console.error(err)
-        return
-      }
+//    var dir = "./src/util/tmp"
+//    fs.readdir(dir, (err, files) => {
+//      if (err) throw err;
+//  
+//      for (const file of files) {
+//        console.log(file);
+//        fs.unlink(dir + file, err => {
+//          if (err) throw err;
+//        });
+//      }
+//    })
 
-      //file removed
-    })
   });
   
   // Root Endpoint
