@@ -48,21 +48,9 @@ import { Router, Request, Response } from 'express';
       res.end(data)
       fs.unlink(image_path, err => {
           if (err) throw err;
-      });;
+      });
     });
     
-
-//    var dir = "./src/util/tmp"
-//    fs.readdir(dir, (err, files) => {
-//      if (err) throw err;
-//  
-//      for (const file of files) {
-//        console.log(file);
-//        fs.unlink(dir + file, err => {
-//          if (err) throw err;
-//        });
-//      }
-//    })
 
   });
   
