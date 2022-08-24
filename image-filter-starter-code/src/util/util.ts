@@ -3,10 +3,6 @@ import Jimp = require("jimp");
 import axios, {AxiosResponse} from 'axios';
 
 
-function FailedException(message) {
-  this.message = message;
-  this.name = 'FailedException';
-}
 
 
 // filterImageFromURL
