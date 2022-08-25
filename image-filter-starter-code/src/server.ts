@@ -38,7 +38,9 @@ import { Router, Request, Response } from 'express';
     if (image_url == undefined || image_url == "") {
       return res.status(400).send("Image url is required.");
     }
-    let image_path = await filterImageFromURL(image_url);
+
+    console.log(typeof image_url);
+    let image_path = await filterImageFromURL(String(image_url));
     
     //console.log(image_path, "hello boy");
 
